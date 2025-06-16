@@ -1,0 +1,863 @@
+:root {
+    --website-background-color: #f0f5f9;
+  
+    --box-shadow-color: #00000020;
+    --right-container-background-color: #ffffff;
+    --border-color: #e6e6e6;
+    --active-index-button-color:#0091ce;
+    --edit-btn-color:#0091ce;
+  
+  }
+  
+  
+  
+  
+  
+  html,
+  body {
+    height: 100%;
+    /* Makes both html and body span the entire height of the viewport */
+    width: 100%;
+    /* Makes both html and body span the entire width of the viewport */
+    margin: 0;
+    /* Removes default margin applied by browsers */
+    padding: 0;
+    /* Removes default padding applied by browsers */
+    box-sizing: border-box;
+    /* Ensures padding/border are included in dimensions */
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  
+  }
+  
+  button {
+    height: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: none;
+    font-size: .8rem;
+    background-color: #0091ce;
+    color: white;
+    border-radius: 25px;
+  
+  }
+  
+  
+  
+  .container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background-color: var(--website-background-color);
+  
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  .popup {
+    position: absolute;
+    display: none;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    border-radius: 8px;
+    z-index: 1000;
+    min-width: 150px;
+    max-width: 200px;
+    
+  }
+  
+  
+  
+  
+  .popup.active {
+    display: block;
+    right: 0;
+    padding: 10px;
+    margin-right: 20px;
+  }
+  
+  .popup-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 200px;
+    margin-right: 100px;
+  
+  }
+  
+  .popup-content button {
+    border: none;
+    padding: 8px;
+    text-align: left;
+    background-color: #f4f4f4;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .popup-content button:hover {
+    background-color: #ddd;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  .right-section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+    margin-right: 20px !important;
+    margin-left: 20px !important;
+    background-color: var(--right-container-background-color);
+    box-shadow: 0 2px 6px #2553b91a;
+    border-radius: 18px !important;
+  
+    gap: 20px;
+    padding: 10px !important;
+  
+  
+  }
+  
+  .right-section::-webkit-scrollbar {
+    visibility: hidden;
+  }
+  
+  .trail {
+  
+  
+    height: calc(100%-60px);
+    background-color: #008080;
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+  
+  }
+  
+  
+  
+  
+  
+  .app-header {
+    display: flex;
+    margin-top: 10px;
+    height: 30px;
+  
+  
+  
+    /* padding-right: 30px !important;
+    padding-left: 30px !important; */
+  
+  
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  
+  .search-and-filter-options {
+    display: flex
+  }
+  
+  
+  
+  
+  
+  .search-container {
+    width: 300px;
+    height: 40px;
+    border: solid 1px #29343d;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px 0 2px;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  #search-input {
+    width: 270px;
+    height: 35px;
+    margin-left: 1px;
+    border: none;
+    outline: none;
+    font-size: 12px;
+  
+  }
+  
+  
+  
+  .action-button {
+  
+  
+    width: 80%;
+    height: 40px;
+    margin: 10px;
+    border: solid 1px #29343d;
+    border-radius: 8px;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    font-size: .7rem;
+  
+  }
+  
+  .action-button i {
+    font-size: 18px;
+    color: #002D56;
+  }
+  
+  .action-button:hover {
+    background: #e1e5ea;
+  }
+  
+  .action-button-container {
+    margin-left: 10px;
+    width: 50px;
+    position: relative;
+  
+  }
+  
+  .action-group-button {
+    width: 100%;
+    padding: 12px 16px;
+    background: white;
+    /* border: 1px solid #29343d; */
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+    color: black;
+  }
+  
+  
+  
+  .action-group-content {
+    display: none;
+    position: absolute;
+    min-width: 180px;
+    /* Ensures a proper dropdown width */
+    width: max-content;
+    /* Adjust based on content */
+    background: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    margin-top: 4px;
+    overflow: auto;
+    z-index: 1000;
+    right: 0;
+    /* Align dropdown to the right edge of the container */
+    padding: 8px;
+    margin-right: 0px;
+  }
+  
+  .action-group-content.show {
+    display: block;
+  }
+  
+  /* Optional: Style for action buttons inside dropdown */
+  .action-button {
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    /* Prevent text wrapping */
+  }
+  
+  .action-button:hover {
+    background-color: #f0f0f0;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  .dropdown-container {
+    margin-left: 10px;
+    width: 200px;
+    position: relative;
+  }
+  
+  .dropdown-button {
+    width: 100%;
+    padding: 12px 16px;
+    background: white;
+    border: 1px solid #29343d;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .dropdown-button:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .arrow {
+    border: solid #29343d;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(45deg);
+    transition: transform 0.2s ease;
+  }
+  
+  .arrow.up {
+    transform: rotate(-135deg);
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    width: 425px;
+    background: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    margin-top: 4px;
+    margin-left: -225px;
+    max-height: 80vh;
+    overflow: auto;
+  
+    z-index: 1000;
+  }
+  
+  
+  .dropdown-button {
+    color: #111c2d;
+    font-size: .8rem;
+  }
+  
+  .dropdown-content.show {
+    display: block;
+  }
+  
+  .dropdown-item {
+    padding: 12px 16px;
+    cursor: pointer;
+    color: #29343d;
+    font-size: .8rem;
+    margin: 10px;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #D3DFFB;
+    border-radius: 8px;
+  }
+  
+  .drop-down-first-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+  }
+  
+  .add-new-saved-search {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    width: calc(80%);
+    color: white;
+    background-color: #004f9fef;
+    border-radius: 8px;
+  
+    >.material-symbols-outlined {
+      font-size: 1.5rem;
+      fill: white;
+    }
+  }
+  
+  .clear-saved-search {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: calc(20%);
+    color: #000000;
+  
+    border-radius: 8px;
+  
+    >.material-symbols-outlined {
+      font-size: 1.5rem;
+      fill: #000000;
+    }
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  .add-new-saved-search:hover {
+    background-color: #004f9f;
+    box-shadow: 5px 4px 4px #00000040;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+  }
+  
+  .clear-saved-search:hover {
+    background-color: #ffffff;
+    box-shadow: 5px 4px 4px #00000040;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  .warning-container{
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+  
+  }
+  
+  .list-view-container {
+  
+    width: 100%;
+  
+    margin-top: 20px;
+  
+    align-items: baseline;
+  
+    height: 100%;
+  
+    font-size: .8rem;
+    overflow: auto;
+  }
+  
+  .list-view {
+    width: 100%;
+  
+  }
+  
+  .list-view-padding-container {
+    margin-left: 30px;
+    margin-right: 30px;
+  
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+  }
+  
+  
+  
+  
+  
+  th.drag-over,
+  tr.drag-over {
+    /* border: 2px dashed #2c3e50; */
+    border: 2px dashed #2c3e50;
+    background-color: #CCDBEB;
+  }
+  
+  .dragging {
+  
+    background-color: #E6E6E6;
+    opacity: 0.7;
+    transform: scale(1.05) ;
+    transition: rotate(20deg) transform 0.2s ease-in-out, opacity 0.2s ease-in-out ;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  
+  
+  
+  th {
+    text-align: left;
+  
+  }
+  
+  
+  
+  
+  .list-view-padding-container {
+    margin-left: 30px;
+    margin-right: 30px;
+  
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+  }
+  
+  .action-buttons {
+    display: flex;
+    justify-content: center;
+  
+  }
+  
+  thead {
+    font-weight: bold;
+  }
+  
+  
+  button {
+    background: transparent;
+  }
+  
+  .view-btn {
+    border: none;
+    /* background-color: #47CCFC; */
+    color: #47ccfc;
+  }
+  
+  .edit-btn {
+    border: none;
+    color: white;
+     background-color: var(--edit-btn-color) !important; 
+     height: 30px;
+     border-radius: 5px;
+  }
+  
+  .delete-btn {
+    color: #ff5757;
+    border: none;
+    /* background-color: #FF5757; */
+  }
+  
+  input[type="checkbox"] {
+    margin-top: 6px;
+  }
+  
+  .middle {
+    text-align: center;
+  }
+  .gear-icon{
+    font-size: 1rem !important;
+    margin-left: 10px;
+  }
+  
+  
+  th>.material-symbols-outlined {
+  
+    font-size: 10px;
+    font-weight: 600;
+  }
+  
+  tr {
+    height: 40px;
+    cursor: pointer;
+  
+  }
+  
+  .status {
+    margin-left: 10px;
+    text-align: center;
+    border-radius: 20px;
+    padding: 2px 0px;
+    color: white;
+  }
+  
+  .cursor {
+    cursor: grab;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .Pending {
+    background-color: #FF8A5E;
+  }
+  
+  .Completed {
+    background-color: #05BB69;
+  }
+  
+  .Processing {
+    background-color: #dab546;
+  }
+  
+  .Cancelled {
+    background-color: #ff5757;
+  }
+  
+  .Shipped {
+    background-color: #0091ce;
+  }
+  
+  
+  .In-Stock {
+    background-color: #05BB69;
+    /* Green */
+  }
+  
+  .Out-of-Stock {
+    background-color: #ff5757;
+    /* Red */
+  }
+  
+  .Limited-Stock {
+    background-color: #dab546;
+    /* Yellow/Gold */
+  }
+  
+  .Pre-Order {
+    background-color: #0091ce;
+    /* Blue */
+  }
+  
+  .Discontinued {
+    background-color: #777777;
+    /* Gray */
+  }
+  
+  
+  
+  
+  
+  .footer {
+    height: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    align-items: center;
+  
+  }
+  
+  .index_buttons {
+    display: flex;
+    border: .1rem solid #ddd;
+    padding: 5px 5px;
+    border-radius: 5px;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  
+  
+  
+  
+  
+  .index_buttons button {
+    background-color: transparent;
+    height: 30px;
+  }
+  
+  .inactive-nav-button {
+  
+    border-radius: 5px;
+    background-color: transparent;
+    color: #20202071;
+  
+  }
+  
+  .active-nav-button {
+    background-color: var(--active-index-button-color) !important;
+    color: white;
+    border-radius: 5px;
+  
+  }
+  
+  .inactive-nav-button:hover {
+    background-color: #ddd;
+  
+  }
+  
+  .text_bottom {
+    display: block;
+  }
+  
+  .table_size_selector {
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+  
+  }
+  
+  th {
+    text-align: start;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  .custom-select {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .custom-select select {
+    appearance: none;
+    /* Removes native dropdown arrow */
+    -webkit-appearance: none;
+    /* Safari-specific */
+    -moz-appearance: none;
+    /* Firefox-specific */
+    outline: none;
+    border: 1px solid #E6E6E6;
+    border-radius: 6px;
+    background-color: white;
+    padding: 10px 40px 10px 12px;
+    font-size: 0.9rem;
+    color: #2d3748;
+    width: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+  
+  .custom-select select:focus {
+    border-color: #0091ce;
+    box-shadow: 0 0 4px rgba(0, 145, 206, 0.3);
+  }
+  
+  .custom-select:after {
+    content: '▾';
+    /* Custom dropdown arrow */
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-size: 0.8rem;
+    color: #555;
+    pointer-events: none;
+    /* Prevent clicks on the arrow */
+  }
+  
+  
+  .value-col input {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 300px;
+    outline: none;
+    border: 1px solid #E6E6E6;
+    border-radius: 6px;
+    background-color: white;
+    padding: 10px 40px 10px 12px;
+    font-size: 0.9rem;
+    color: #2d3748;
+    width: 100%;
+    box-sizing: border-box;
+  
+  }
+  
+  
+  .action-buttons-filter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-left: 10px;
+  
+  }
+  
+  .action-buttons-filter button {
+  
+    border: none;
+    background-color: transparent;
+    font-size: 1.5rem;
+    color: black;
+    padding-right: 0px;
+    padding-left: 0px;
+  
+  }
+  
+  .filter-table-body {
+    overflow: auto;
+  }
+  
+  
+  .save-smart-find-section {
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+  
+  }
+  
+  
+  
+  .smartfind-save-name {
+  
+  
+    display: inline-block;
+    width: 100%;
+  
+    outline: none;
+    border: 1px solid #E6E6E6;
+    border-radius: 6px;
+    background-color: white;
+    padding: 10px 40px 10px 12px;
+    font-size: 0.9rem;
+    color: #2d3748;
+    width: calc(75%);
+    box-sizing: border-box;
+  }
+  
+  
+  
+  .smartfind-save-button {
+  
+  
+  
+    height: 40px;
+    border-radius: 25px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: calc(20%);
+    background-color: #0091ce;
+  
+  }
+  
+  .reset-btn {
+    background-color: #f4f4f4 !important;
+    color: #111c2d !important;
+  }
+  
+  .apply-btn {
+    background-color: #0091ce;
+    color: white;
+  }

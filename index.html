@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div class="container">
+
+ 
+    <div class="right-section">
+
+      <div class="app-header">
+
+
+
+        <h3 id="module-name">Customer</h3>
+    
+
+        <div class="search-and-filter-options">
+
+
+
+          <div class="search-container">
+
+            <input type="text" name="search-input" id="search-input" placeholder="search" autocomplete="off">
+            <svg xmlns="http://www.w3.org/2000/svg" height="20px" width="20px" viewBox="0 -960 960 960"
+              id="searchButton">
+              <path
+                d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" />
+            </svg>
+          </div>
+
+          
+          
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+
+
+      <div class="list-view-container" id="list-view-container">
+        <table class="list-view" border=1 frame=void rules=rows>
+
+          <thead>
+            <tr>
+
+              <th columnName="name" draggable="true">Name </th>
+              <th columnName="email" draggable="true">Email</th>
+              <th columnName="mobile" draggable="true">Mobile</th>
+              <th columnName="country" draggable="true">Country</th>
+              <th columnName="order" draggable="true" class="middle">Order</th>
+              <th columnName="status" draggable="true" class="middle">Status</th>
+              <th columnName="last-order" draggable="true" class="middle">Last Order</th>
+              <th columnName="last-order" draggable="true" class="middle">Last Order</th>
+              <th draggable="true" class="middle">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+
+        </table>
+
+      </div>
+      <div class="footer" id="footer">
+        <span>Showing Data 1-10 of 500</span>
+        <div class="index_buttons">
+          <button class="inactive-nav-button" id="previous">&lt</button>
+          <button class="active-nav-button" id="1">1</button>
+          <button class="inactive-nav-button" id="2">2</button>
+          <button class="inactive-nav-button" id="3">3</button>
+          <button class="inactive-nav-button" id="4">4</button>
+          <span>. .</span>
+
+          <button class="inactive-nav-button" id="next">&gt</button>
+        </div>
+      </div>
+
+      <div class="warning-container" id="warning-container">
+        No data found.
+      </div>
+
+
+    </div>
+
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <script src="script.js"></script>
+</body>
+
+</html>

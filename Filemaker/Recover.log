@@ -1,0 +1,9 @@
+﻿Timestamp	Filename	Error	Message
+2025-06-11 05:07:13.058 +0530	ListViewAddon.fmp12	0	*** Started consistency check of improperly closed file, total of 353 block(s) to check
+2025-06-11 05:07:13.074 +0530	ListViewAddon.fmp12	8432	Page 197 marked free but not in free list
+2025-06-11 05:07:13.074 +0530	ListViewAddon.fmp12	8432	Page 198 marked free but not in free list
+2025-06-11 05:07:13.074 +0530	ListViewAddon.fmp12	8432	Page 199 marked free but not in free list
+2025-06-11 05:07:13.074 +0530	ListViewAddon.fmp12	8432	Page 347 marked free but not in free list
+2025-06-11 05:07:13.074 +0530	ListViewAddon.fmp12	8432	Page 348 marked free but not in free list
+2025-06-11 05:07:13.074 +0530	ListViewAddon.fmp12	0	Reset maximum block sequence number to 78395
+2025-06-11 05:07:13.074 +0530	ListViewAddon.fmp12	0	*** Completed consistency check, checked 353 block(s)
