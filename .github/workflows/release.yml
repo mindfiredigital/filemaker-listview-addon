@@ -10,27 +10,37 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: pnpm/action-setup@v2
         with:
           version: 8
+
       - run: pnpm install
+
       - name: Version bump
         run: pnpm changeset version
+
+      - name: Get version from package.json
+        id: get_version
+        run: echo "version=$(jq -r .version package.json)" >> $GITHUB_OUTPUT
+
       - name: Rename .fmp12 with version
         run: |
-          version=$(jq -r .version package.json)
+          version=${{ steps.get_version.outputs.version }}
           mv Filemaker/ListViewAddon.fmp12 Filemaker/ListViewAddon_v$version.fmp12
+
       - name: Commit version bump and rename
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add .
-          git commit -m "Release v$(jq -r .version package.json)"
+          git commit -m "Release v${{ steps.get_version.outputs.version }}"
           git push
+
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v${{ steps.version.outputs.version }}
-          name: Release v${{ steps.version.outputs.version }}
+          tag_name: v${{ steps.get_version.outputs.version }}
+          name: Release v${{ steps.get_version.outputs.version }}
           files: |
             Filemaker/ListViewAddon_v*.fmp12
