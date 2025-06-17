@@ -15,26 +15,26 @@ jobs:
         with:
           version: 8
 
-      - run: pnpm install
+      - name: Install dependencies
+        run: pnpm install
 
       - name: Version bump
         run: pnpm changeset version
 
-      - name: Get version from package.json
+      - name: Get version
         id: get_version
-        run: echo "version=$(jq -r .version package.json)" >> $GITHUB_OUTPUT
+        run: echo "version=$(jq -r .version package.json)" >> "$GITHUB_OUTPUT"
 
-      - name: Rename .fmp12 with version
+      - name: Copy .fmp12 with version
         run: |
-          version=${{ steps.get_version.outputs.version }}
-          mv Filemaker/ListViewAddon.fmp12 Filemaker/ListViewAddon_v$version.fmp12
+          cp Filemaker/ListViewAddon.fmp12 Filemaker/ListViewAddon_v${{ steps.get_version.outputs.version }}.fmp12
 
-      - name: Commit version bump and rename
+      - name: Commit version bump
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add .
-          git commit -m "Release v${{ steps.get_version.outputs.version }}"
+          git add package.json .changeset/ .github
+          git commit -m "chore: version bump v${{ steps.get_version.outputs.version }}"
           git push
 
       - name: Create GitHub release
@@ -43,4 +43,4 @@ jobs:
           tag_name: v${{ steps.get_version.outputs.version }}
           name: Release v${{ steps.get_version.outputs.version }}
           files: |
-            Filemaker/ListViewAddon_v*.fmp12
+            Filemaker/ListViewAddon_v${{ steps.get_version.outputs.version }}.fmp12

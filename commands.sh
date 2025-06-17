@@ -1,0 +1,1 @@
+pnpm dlx @changesets/cli
