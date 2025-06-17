@@ -1,6 +1,6 @@
 {
   "name": "filemaker-listview-addon",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "This add-on allows you to create a JavaScript-powered list view in FileMaker using any table. It leverages a WebViewer for dynamic UI rendering, providing flexibility and better user interaction.",
   "main": "script.js",
   "scripts": {
