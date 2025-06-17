@@ -1,28 +1,36 @@
-name: Create PR from master to main
+name: Release
 
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
-  create-pr:
+  version:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
-
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
         with:
-          fetch-depth: 0
-
-      - name: Create PR from master to main
-        uses: repo-sync/pull-request@v2
+          version: 8
+      - run: pnpm install
+      - name: Version bump
+        run: pnpm changeset version
+      - name: Rename .fmp12 with version
+        run: |
+          version=$(jq -r .version package.json)
+          mv Filemaker/ListViewAddon.fmp12 Filemaker/ListViewAddon_v$version.fmp12
+      - name: Commit version bump and rename
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Release v$(jq -r .version package.json)"
+          git push
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
         with:
-          source_branch: master
-          destination_branch: main
-          pr_title: "Sync changes from master to main"
-          pr_body: |
-            This pull request was created automatically to sync changes from `master` to `main`.
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: v${{ steps.version.outputs.version }}
+          name: Release v${{ steps.version.outputs.version }}
+          files: |
+            Filemaker/ListViewAddon_v*.fmp12
