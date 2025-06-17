@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/mindfiredigital/filemaker-listview-addon/issues"
   },
-  "homepage": "https://github.com/mindfiredigital/filemaker-listview-addon#readme"
+  "homepage": "https://github.com/mindfiredigital/filemaker-listview-addon#readme",
+  "devDependencies": {
+    "@changesets/cli": "^2.29.4"
+  }
 }
